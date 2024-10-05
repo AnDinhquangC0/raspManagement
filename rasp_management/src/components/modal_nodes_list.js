@@ -5,6 +5,8 @@ import { Button } from "bootstrap";
 
 const ModalNodesList = () => {
   const [searchData, setSearchData] = useState("");
+  const [isCheckAll, setIsCheckAll] = useState(false);
+  const [isCheck, setIsCheck] = useState([]);
 
   const [newNodesData, setNewNodesData] = useState([
     { id: "1", service: "Service A", location: "Location 1" },
@@ -13,14 +15,52 @@ const ModalNodesList = () => {
     { id: "4", service: "Service D", location: "Location 4" },
   ]);
   const [knownNodesData, setKnownNodesData] = useState([
-    { id: "1", service: "Service A", location: "Location 1", info: "Raspberry info 1" },
-    { id: "2", service: "Service B", location: "Location 2", info: "Raspberry info 2" },
-    { id: "3", service: "Service C", location: "Location 3", info: "Raspberry info 3" },
-    { id: "4", service: "Service D", location: "Location 4", info: "Raspberry info 4" },
+    {
+      id: "1",
+      service: "Service A",
+      location: "Location 1",
+      info: "Raspberry info 1",
+    },
+    {
+      id: "2",
+      service: "Service B",
+      location: "Location 2",
+      info: "Raspberry info 2",
+    },
+    {
+      id: "3",
+      service: "Service C",
+      location: "Location 3",
+      info: "Raspberry info 3",
+    },
+    {
+      id: "4",
+      service: "Service D",
+      location: "Location 4",
+      info: "Raspberry info 4",
+    },
   ]);
 
   const handleSearch = (query) => {
     setSearchData(query);
+  };
+
+  const handleCheckAll = (event) => {
+    const checked = event.target.checked;
+    setIsCheckAll(checked);
+    if (checked) {
+      setIsCheck(newNodesData.map((node) => node.id));
+    } else setIsCheck([]);
+  };
+
+  const handleCheck = (event) => {
+    const { id, checked } = event.target;
+    if (checked) {
+        setIsCheck([...isCheck, id]);
+    } else {
+        setIsCheck(isCheck.filter((nodeId) => nodeId !== id));
+    };
+    console.log(isCheck);
   };
 
   return (
@@ -65,12 +105,12 @@ const ModalNodesList = () => {
           />
         </div>
         <div className="col-auto pt-4">
-          <button type="button" className="btn btn-secondary" id="more-filter-btn">
+          <button type="button" className="btn btn-secondary" id="moreFilter">
             More Filter
           </button>
         </div>
         <div className="col-auto pt-4">
-          <button type="button" className="btn btn-primary" id="add-node-btn">
+          <button type="button" className="btn btn-primary" id="addNode">
             <i className="fas fa-download"></i> Add Node
           </button>
         </div>
@@ -88,10 +128,17 @@ const ModalNodesList = () => {
           New Nodes <i className="fas fa-chevron-down"></i>
         </a>
         <div className="collapse" id="collapse">
-          <table className="table" id="table_new_nodes">
+          <table className="table" id="tableNewNodes">
             <thead>
               <tr>
-                <th></th>
+                <th>
+                  <input
+                    id="checkAll"
+                    type="checkbox"
+                    checked={isCheckAll}
+                    onClick={handleCheckAll}
+                  />
+                </th>
                 <th>Node ID</th>
                 <th>SDR Service</th>
                 <th>Location</th>
@@ -102,7 +149,7 @@ const ModalNodesList = () => {
               {newNodesData.map((node) => (
                 <tr key={node.id}>
                   <td>
-                    <input id={node.id} type="checkbox" />
+                    <input id={node.id} type="checkbox" checked={isCheck.includes(node.id)} onClick={handleCheck} />
                   </td>
                   <td>{node.id}</td>
                   <td>{node.service}</td>
@@ -131,7 +178,7 @@ const ModalNodesList = () => {
           Known Nodes <i className="fas fa-chevron-down"></i>
         </a>
         <div className="collapse" id="collapse1">
-          <table className="table" id="table_known_nodes">
+          <table className="table" id="tableKnownNodes">
             <thead>
               <tr>
                 <th>Node ID</th>
@@ -153,7 +200,6 @@ const ModalNodesList = () => {
           </table>
         </div>
       </div>
-
     </div>
   );
 };
