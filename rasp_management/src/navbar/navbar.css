@@ -2,7 +2,7 @@
 
 .navbar {
     height: 100%;
-    width: 240px;
+    width: 180px;
     position: fixed;
     top: 0;
     left: 0;
@@ -11,13 +11,13 @@
 }
 
 .nav-link, .nav-link:visited {
-    padding: 20px 27px;
+    padding: 10px 17px;
     text-decoration: none;
-    font-size: 24px;
+    font-size: 20px;
     font-family: 'Inter', sans-serif;
     color: var(--white);
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
 }
 
 .nav-link:hover {
