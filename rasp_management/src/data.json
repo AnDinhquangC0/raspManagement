@@ -1,0 +1,75 @@
+{
+    "nodes": [
+      {
+        "id": 1,
+        "title": "NODE 1",
+        "nodeInfo": {
+          "nodeId": "123",
+          "model": "Raspberry Pi 4",
+          "sdrDevice": "LimeSDR  kdlkf ekejejeje êjejeeje",
+          "sdrService": "FM Receiver"
+        }
+      },
+      {
+        "id": 2,
+        "title": "NODE 2",
+        "nodeInfo": {
+          "nodeId": "456",
+          "model": "Raspberry Pi 3",
+          "sdrDevice": "HackRF",
+          "sdrService": "GPS Tracker"
+        }
+      },
+      {
+        "id": 3,
+        "title": "NODE 3",
+        "nodeInfo": {
+          "nodeId": "789",
+          "model": "Raspberry Pi Zero",
+          "sdrDevice": "BladeRF",
+          "sdrService": "ADS-B Receiver"
+        }
+      },
+      {
+        "id": 4,
+        "title": "NODE 4",
+        "nodeInfo": {
+          "nodeId": "789",
+          "model": "Raspberry Pi Zero",
+          "sdrDevice": "BladeRF",
+          "sdrService": "WiFi Receiver"
+        }
+      },
+      {
+        "id": 4,
+        "title": "NODE 4",
+        "nodeInfo": {
+          "nodeId": "789",
+          "model": "Raspberry Pi Zero",
+          "sdrDevice": "BladeRF",
+          "sdrService": "WiFi Receiver"
+        }
+      },
+      {
+        "id": 6,
+        "title": "NODE 6",
+        "nodeInfo": {
+          "nodeId": "789",
+          "model": "Raspberry Pi Zero",
+          "sdrDevice": "BladeRF",
+          "sdrService": "WiFi Receiver"
+        }
+      },
+      {
+        "id": 7,
+        "title": "NODE 7",
+        "nodeInfo": {
+          "nodeId": "789",
+          "model": "Raspberry Pi Zero",
+          "sdrDevice": "BladeRF",
+          "sdrService": "WiFi Receiver"
+        }
+      }
+    ]
+  }
+  
