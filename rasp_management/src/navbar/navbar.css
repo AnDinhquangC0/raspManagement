@@ -1,0 +1,31 @@
+@import '../colors.css';
+
+.navbar {
+    height: 100%;
+    width: 240px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--blue-gray);
+    padding-top: 200px;
+}
+
+.nav-link, .nav-link:visited {
+    padding: 20px 27px;
+    text-decoration: none;
+    font-size: 24px;
+    font-family: 'Inter', sans-serif;
+    color: var(--white);
+    display: block;
+    margin-bottom: 20px;
+}
+
+.nav-link:hover {
+    background-color: var(--dark-gray);
+    color: var(--white);
+}
+
+.active {
+    background-color: var(--dark-gray);
+    color: var(--white);
+}
