@@ -28,17 +28,17 @@ import './navbar.css';
 
 const Navbar = () => {
     return (
-        <div className="navbar">
-            <NavLink to="/overview" className="nav-link" activeClassName="active">
+        <div className="navbar-custom">
+            <NavLink to="/overview" className="nav-link-custom" activeClassName="active">
                 Overview
             </NavLink>
-            <NavLink to="/nodes" className="nav-link" activeClassName="active">
+            <NavLink to="/nodes" className="nav-link-custom" activeClassName="active">
                 Nodes
             </NavLink>
-            <NavLink to="/services" className="nav-link" activeClassName="active">
+            <NavLink to="/services" className="nav-link-custom" activeClassName="active">
                 Services
             </NavLink>
-            <NavLink to="/logs" className="nav-link" activeClassName="active">
+            <NavLink to="/logs" className="nav-link-custom" activeClassName="active">
                 Logs
             </NavLink>
         </div>

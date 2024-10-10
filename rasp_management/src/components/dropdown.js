@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import 'bootstrap/dist/css/bootstrap.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-
 
 const Dropdown = ({ options, onSelect, labelText }) => {
     const [selectedOption, setSelectedOption] = useState(options[0].value ? options[0].value : '');

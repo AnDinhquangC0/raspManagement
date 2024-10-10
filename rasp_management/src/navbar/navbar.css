@@ -1,6 +1,6 @@
 @import '../colors.css';
 
-.navbar {
+.navbar-custom {
     height: 100%;
     width: 180px;
     position: fixed;
@@ -10,7 +10,7 @@
     padding-top: 200px;
 }
 
-.nav-link, .nav-link:visited {
+.nav-link-custom, .nav-link-custom:visited {
     padding: 10px 17px;
     text-decoration: none;
     font-size: 20px;
@@ -20,7 +20,7 @@
     margin-bottom: 8px;
 }
 
-.nav-link:hover {
+.nav-link-custom:hover {
     background-color: var(--dark-gray);
     color: var(--white);
 }

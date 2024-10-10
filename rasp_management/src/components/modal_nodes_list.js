@@ -2,12 +2,8 @@ import React, { useState } from "react";
 import SearchBar from "./search_bar";
 import Dropdown from "./dropdown";
 import { Button } from "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import 'bootstrap/dist/css/bootstrap.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 
-
-const ModalNodesList = () => {
+const ModalNodesList = ({ isShow, handleClose }) => {
   const [searchData, setSearchData] = useState("");
   const [isCheckAll, setIsCheckAll] = useState(false);
   const [isCheck, setIsCheck] = useState([]);
@@ -60,151 +56,164 @@ const ModalNodesList = () => {
   const handleCheck = (event) => {
     const { id, checked } = event.target;
     if (checked) {
-        setIsCheck([...isCheck, id]);
+      setIsCheck([...isCheck, id]);
     } else {
-        setIsCheck(isCheck.filter((nodeId) => nodeId !== id));
-    };
-    console.log(isCheck);
+      setIsCheck(isCheck.filter((nodeId) => nodeId !== id));
+    }
   };
 
   return (
-    <div className="modal-nodes-list p-2">
-      <SearchBar onSearch={handleSearch} />
+    <>
+    {isShow && <div className="modal-backdrop fade show"></div>}
+    <div className={`modal fade ${isShow ? "show" : ""}`} style={{ display: isShow ? "block" : "none" }} tabindex="-1" role="dialog" aria-hidden="true">
+      <div className="modal-dialog modal-lg modal-dialog-scrollable">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title">Modal title</h5>
+            <button type="button" className="btn-close" onClick={handleClose} aria-label="Close"/>
+          </div>
+          <div className="modal-body">
+            <SearchBar onSearch={handleSearch} />
 
-      <div className="row align-items-center">
-        <div className="col">
-          <Dropdown
-            options={[
-              { label: "All", value: "all" },
-              { label: "Node 1", value: "node1" },
-              { label: "Node 2", value: "node2" },
-              { label: "Node 3", value: "node3" },
-            ]}
+            <div className="row align-items-center">
+              <div className="col">
+                <Dropdown
+                  options={[
+                    { label: "All", value: "all" },
+                    { label: "Node 1", value: "node1" },
+                    { label: "Node 2", value: "node2" },
+                    { label: "Node 3", value: "node3" },
+                  ]}
             onSelect={(option) => console.log(option)}
-            labelText="State"
-          />
-        </div>
-        <div className="col">
-          <Dropdown
-            options={[
-              { label: "All", value: "all" },
-              { label: "Node 1", value: "node1" },
-              { label: "Node 2", value: "node2" },
-              { label: "Node 3", value: "node3" },
-            ]}
+                  labelText="State"
+                />
+              </div>
+              <div className="col">
+                <Dropdown
+                  options={[
+                    { label: "All", value: "all" },
+                    { label: "Node 1", value: "node1" },
+                    { label: "Node 2", value: "node2" },
+                    { label: "Node 3", value: "node3" },
+                  ]}
             onSelect={(option) => console.log(option)}
-            labelText="Service"
-          />
-        </div>
-        <div className="col">
-          <Dropdown
-            options={[
-              { label: "All", value: "all" },
-              { label: "Node 1", value: "node1" },
-              { label: "Node 2", value: "node2" },
-              { label: "Node 3", value: "node3" },
-            ]}
+                  labelText="Service"
+                />
+              </div>
+              <div className="col">
+                <Dropdown
+                  options={[
+                    { label: "All", value: "all" },
+                    { label: "Node 1", value: "node1" },
+                    { label: "Node 2", value: "node2" },
+                    { label: "Node 3", value: "node3" },
+                  ]}
             onSelect={(option) => console.log(option)}
-            labelText="Location"
-          />
-        </div>
-        <div className="col-auto pt-4">
-          <button type="button" className="btn btn-secondary" id="moreFilter">
-            More Filter
-          </button>
-        </div>
-        <div className="col-auto pt-4">
-          <button type="button" className="btn btn-primary" id="addNode">
-            <i className="fas fa-download"></i> Add Node
-          </button>
-        </div>
-      </div>
+                  labelText="Location"
+                />
+              </div>
+              <div className="col-auto pt-4">
+                <button type="button" className="btn btn-secondary" id="moreFilter">
+                  More Filter
+                </button>
+              </div>
+              <div className="col-auto pt-4">
+                <button type="button" className="btn btn-primary" id="addNode">
+                  <i className="fas fa-download"></i> Add Node
+                </button>
+              </div>
+            </div>
 
-      <div className="mt-2">
-        <a
-          data-bs-toggle="collapse"
-          data-bs-target="#collapse"
-          role="button"
-          aria-expanded="false"
-          aria-controls="collapse"
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
-          New Nodes <i className="fas fa-chevron-down"></i>
-        </a>
-        <div className="collapse" id="collapse">
-          <table className="table" id="tableNewNodes">
-            <thead>
-              <tr>
-                <th>
-                  <input
-                    id="checkAll"
-                    type="checkbox"
-                    checked={isCheckAll}
-                    onClick={handleCheckAll}
-                  />
-                </th>
-                <th>Node ID</th>
-                <th>SDR Service</th>
-                <th>Location</th>
-                <th width="50px"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {newNodesData.map((node) => (
-                <tr key={node.id}>
-                  <td>
+            <div className="mt-2">
+              <a
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse"
+                role="button"
+                aria-expanded="false"
+                aria-controls="collapse"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                New Nodes <i className="fas fa-chevron-down"></i>
+              </a>
+              <div className="collapse" id="collapse">
+                <table className="table" id="tableNewNodes">
+                  <thead>
+                    <tr>
+                      <th>
+                        <input
+                          id="checkAll"
+                          type="checkbox"
+                          checked={isCheckAll}
+                          onClick={handleCheckAll}
+                        />
+                      </th>
+                      <th>Node ID</th>
+                      <th>SDR Service</th>
+                      <th>Location</th>
+                      <th width="50px"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {newNodesData.map((node) => (
+                      <tr key={node.id}>
+                        <td>
                     <input id={node.id} type="checkbox" checked={isCheck.includes(node.id)} onClick={handleCheck} />
-                  </td>
-                  <td>{node.id}</td>
-                  <td>{node.service}</td>
-                  <td>{node.location}</td>
-                  <td>
+                        </td>
+                        <td>{node.id}</td>
+                        <td>{node.service}</td>
+                        <td>{node.location}</td>
+                        <td>
                     <button className="btn btn-primary btn-sm" id={node.id}>
-                      <i className="fas fa-circle-plus"></i>
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+                            <i className="fas fa-circle-plus"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
 
-      <div className="mt-2">
-        <a
-          data-bs-toggle="collapse"
-          data-bs-target="#collapse1"
-          role="button"
-          aria-expanded="false"
-          aria-controls="collapse1"
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
-          Known Nodes <i className="fas fa-chevron-down"></i>
-        </a>
-        <div className="collapse" id="collapse1">
-          <table className="table" id="tableKnownNodes">
-            <thead>
-              <tr>
-                <th>Node ID</th>
-                <th>Raspberry info</th>
-                <th>SDR Service</th>
-                <th>Location</th>
-              </tr>
-            </thead>
-            <tbody>
-              {knownNodesData.map((node) => (
-                <tr key={node.id}>
-                  <td>{node.id}</td>
-                  <td>{node.info}</td>
-                  <td>{node.service}</td>
-                  <td>{node.location}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            <div className="mt-2">
+              <a
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse1"
+                role="button"
+                aria-expanded="false"
+                aria-controls="collapse1"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                Known Nodes <i className="fas fa-chevron-down"></i>
+              </a>
+              <div className="collapse" id="collapse1">
+                <table className="table" id="tableKnownNodes">
+                  <thead>
+                    <tr>
+                      <th>Node ID</th>
+                      <th>Raspberry info</th>
+                      <th>SDR Service</th>
+                      <th>Location</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {knownNodesData.map((node) => (
+                      <tr key={node.id}>
+                        <td>{node.id}</td>
+                        <td>{node.info}</td>
+                        <td>{node.service}</td>
+                        <td>{node.location}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    </>
+
   );
 };
 
