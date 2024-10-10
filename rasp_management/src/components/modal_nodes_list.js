@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import SearchBar from "./search_bar";
 import Dropdown from "./dropdown";
 import { Button } from "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import 'bootstrap/dist/css/bootstrap.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-
 
 const ModalNodesList = ({ isShow, handleClose }) => {
   const [searchData, setSearchData] = useState("");
@@ -117,7 +113,7 @@ const ModalNodesList = ({ isShow, handleClose }) => {
                 />
               </div>
               <div className="col-auto pt-4">
-          <button type="button" className="btn btn-secondary" id="moreFilter">
+                <button type="button" className="btn btn-secondary" id="moreFilter">
                   More Filter
                 </button>
               </div>
