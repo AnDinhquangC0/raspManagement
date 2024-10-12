@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Grid2 } from '@mui/material';
 import data from '../data.json';
 import NodeCard from '../nodes/Card'; // Import the Card component
-import ModalNodesList from '../components/modal_nodes_list'; // Import the ModalNodesList component
+import ModalNodesList from '../modal/modal_nodes_list'; // Import the ModalNodesList component
 import { useState } from 'react';
 import SearchBar from '../components/search_bar';
 import Dropdown from "../components/dropdown";
