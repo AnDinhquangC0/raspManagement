@@ -8,10 +8,13 @@ import SearchBar from '../components/search_bar';
 import Dropdown from "../components/dropdown";
 
 export default function Nodes() {
+    // State to manage modal node list visibility
     const [showModal, setShowModal] = useState(false);
+    // Function to show/close the modal
     const handleShow = () => setShowModal(true);
     const handleClose = () => setShowModal(false);
-
+    
+    // State to manage search input
     const [searchData, setSearchData] = useState("");
     const handleSearch = (query) => {
         setSearchData(query);

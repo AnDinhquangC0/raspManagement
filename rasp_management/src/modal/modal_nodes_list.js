@@ -2,11 +2,26 @@ import React, { useState } from "react";
 import SearchBar from "../components/search_bar";
 import Dropdown from "../components/dropdown";
 import { Button } from "bootstrap";
+import ModalNodeInfo from "./modal_node_info";
 
-const ModalNodesList = ({ isShow, handleClose }) => {
+const ModalNodesList = ({ isShow, hide }) => {
   const [searchData, setSearchData] = useState("");
   const [isCheckAll, setIsCheckAll] = useState(false);
   const [isCheck, setIsCheck] = useState([]);
+
+  // State to manage modal node info type and idh
+  const [modalType, setModalType] = useState("");
+  const [nodeId, setNodeId] = useState("");
+
+  // State to manage modal node info visibility
+  const [showModal, setShowModal] = useState(false);
+  // Function to show/close the modal
+  const handleShow = (id, type) => {
+    setShowModal(true);
+    setNodeId(id);
+    setModalType(type);
+  }
+  const handleClose = () => setShowModal(false);
 
   const [newNodesData, setNewNodesData] = useState([
     { id: "1", service: "Service A", location: "Location 1" },
@@ -79,7 +94,7 @@ const ModalNodesList = ({ isShow, handleClose }) => {
               <button
                 type="button"
                 className="btn-close"
-                onClick={handleClose}
+                onClick={hide}
                 aria-label="Close"
               />
             </div>
@@ -154,6 +169,7 @@ const ModalNodesList = ({ isShow, handleClose }) => {
                 >
                   New Nodes <i className="fas fa-chevron-down"></i>
                 </a>
+                <ModalNodeInfo isShow={showModal} hide={handleClose} type={modalType}/>
                 <div className="collapse" id="collapse">
                   <table className="table" id="tableNewNodes">
                     <thead>
@@ -183,7 +199,7 @@ const ModalNodesList = ({ isShow, handleClose }) => {
                               onClick={handleCheck}
                             />
                           </td>
-                          <td>{node.id}</td>
+                          <td onClick={() => handleShow(node.id, "new_node")}>{node.id}</td>
                           <td>{node.service}</td>
                           <td>{node.location}</td>
                           <td>
@@ -225,7 +241,7 @@ const ModalNodesList = ({ isShow, handleClose }) => {
                     <tbody>
                       {knownNodesData.map((node) => (
                         <tr key={node.id}>
-                          <td>{node.id}</td>
+                          <td onClick={() => handleShow(node.id, "known_node")}>{node.id}</td>
                           <td>{node.info}</td>
                           <td>{node.service}</td>
                           <td>{node.location}</td>

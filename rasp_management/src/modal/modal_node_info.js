@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ModalNodeInfo = () => {
+const ModalNodeInfo = ({ isShow, hide, id, type }) => {
   const NodeInfo = {
     nodeId: "12345",
     nodeLocation: "Building A, Room 101",
@@ -17,10 +17,10 @@ const [activeTab, setActiveTab] = useState('raspberry');
   
   return (
     <>
-      {<div className="modal-backdrop fade show"></div>}
+      {isShow && <div className="modal-backdrop fade show"></div>}
       <div
-        className={`modal fade show`}
-        style={{ display: "block" }}
+        className={`modal fade ${isShow ? "show" : ""}`}
+        style={{ display: isShow ? "block" : "none" }}
         tabindex="-1"
         role="dialog"
         aria-hidden="true"
@@ -29,7 +29,12 @@ const [activeTab, setActiveTab] = useState('raspberry');
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">{NodeInfo.nodeId}</h5>
-              <button type="button" className="btn-close" aria-label="Close" />
+              <button
+                type="button"
+                className="btn-close"
+                onClick={hide}
+                aria-label="Close"
+              />
             </div>
             <div className="modal-body">
                 <div className="row">
@@ -132,9 +137,21 @@ const [activeTab, setActiveTab] = useState('raspberry');
                     </div>
                 </div>
             </div>
-            <div className="modal-footer d-flex justify-content-center">
-                <button type="button" className="btn btn-primary me-5"><i className="fas fa-edit"></i> Edit</button>
-                <button type="button" className="btn btn-primary"><i className="fas fa-desktop"></i> Monitor</button>
+            <div className="modal-footer d-flex justify-content-evenly">
+                {/* Bấm vào view info */}
+                {type === "info" && (
+                <>
+                    <button type="button" className="btn btn-primary"><i className="fas fa-edit"></i> Edit</button>
+                    <button type="button" className="btn btn-primary"><i className="fas fa-desktop"></i> Monitor</button>
+                </>
+                )}
+                {/* Bấm vào các thiết bị trong danh sách scan */}
+                {type === "new_node" && (
+                    <button type="button" className="btn btn-primary">Add</button>
+                )}
+                {type === "known_node" && (
+                    <button type="button" className="btn btn-danger">Remove</button>
+                )}
             </div>
           </div>
         </div>
