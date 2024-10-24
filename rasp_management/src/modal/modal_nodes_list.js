@@ -200,8 +200,8 @@ const ModalNodesList = ({ isShow, hide }) => {
                             />
                           </td>
                           <td onClick={() => handleShow(node.id, "new_node")}>{node.id}</td>
-                          <td>{node.service}</td>
-                          <td>{node.location}</td>
+                          <td onClick={() => handleShow(node.id, "new_node")}>{node.service}</td>
+                          <td onClick={() => handleShow(node.id, "new_node")}>{node.location}</td>
                           <td>
                             <button
                               className="btn btn-primary btn-sm"
@@ -240,8 +240,8 @@ const ModalNodesList = ({ isShow, hide }) => {
                     </thead>
                     <tbody>
                       {knownNodesData.map((node) => (
-                        <tr key={node.id}>
-                          <td onClick={() => handleShow(node.id, "known_node")}>{node.id}</td>
+                        <tr key={node.id} onClick={() => handleShow(node.id, "known_node")}>
+                          <td>{node.id}</td>
                           <td>{node.info}</td>
                           <td>{node.service}</td>
                           <td>{node.location}</td>
